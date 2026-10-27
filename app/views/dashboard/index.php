@@ -82,18 +82,22 @@
         và cập nhật hướng xử lý.
     </p>
 
+    
     <div class="quick-actions">
-
         <a class="btn btn-light" href="<?= BASE_URL ?>/defects">
             ▤ Hàng lỗi / Trả về
         </a>
 
-        <?php if ((\Auth::user()['TenVaiTro'] ?? '') === 'Admin'): ?>
+        <a class="btn btn-light" href="<?= BASE_URL ?>/imports">
+            ▤ Nhập kho
+        </a>
+
+        <?php if ((Auth::user()['TenVaiTro'] ?? '') === 'Admin'): ?>
             <a class="btn btn-light" href="<?= BASE_URL ?>/accounts">
                 ♙ Quản lý tài khoản &amp; phân quyền
             </a>
         <?php endif; ?>
-
     </div>
+
 
 </div>

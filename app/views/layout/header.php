@@ -104,6 +104,14 @@ $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '';
             <span class="ico">▤</span>
             <span class="nav-text">Hàng lỗi / Trả về</span>
         </a>
+        <!--Nhập kho-->
+        <a
+            class="nav-link <?= str_contains($path, 'imports') ? 'active' : '' ?>"
+            href="<?= BASE_URL ?>/imports"
+        >
+            <span class="ico">▤</span>
+            <span class="nav-text">Nhập kho</span>
+        </a>
 
         <!-- Đăng xuất -->
         <div class="sidebar-bottom">

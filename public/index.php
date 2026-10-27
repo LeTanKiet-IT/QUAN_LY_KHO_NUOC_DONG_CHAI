@@ -111,6 +111,23 @@ $routes = [
         \DefectController::class,
         'status'
     ],
+    
+    // Quản lý nhập kho
+    'GET /imports' => [
+        ImportController::class,
+        'index'
+    ],
+
+    'GET /imports/create' => [
+        ImportController::class,
+        'create'
+    ],
+
+    'POST /imports/save' => [
+        ImportController::class,
+        'save'
+    ],
+    'GET /imports/detail' => [ImportController::class, 'detail'],
 
 ];
 
