@@ -1,0 +1,644 @@
+
+/* ==================================================
+   1. FONT CHỮ VÀ BIẾN MÀU
+================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --blue: #2878d0;
+    --navy: #182f51;
+    --bg: #f4f7fb;
+    --line: #e4eaf2;
+    --muted: #7d899c;
+}
+
+/* ==================================================
+   2. THIẾT LẬP CHUNG
+================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    font: 14px 'Be Vietnam Pro', Arial, sans-serif;
+    color: #29374d;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+/* ==================================================
+   3. THANH HEADER
+================================================== */
+
+.topbar {
+    height: 70px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+}
+
+.brand {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--navy);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.brand-mark {
+    background: linear-gradient(135deg, #3990e8, #1c5ca5);
+    color: white;
+    border-radius: 11px;
+    padding: 9px 12px;
+}
+
+.top-user {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.avatar {
+    background: #e7f1ff;
+    color: #2678c9;
+    border-radius: 50%;
+    padding: 11px;
+    font-weight: 800;
+}
+
+.top-user small {
+    display: block;
+    color: var(--muted);
+    margin-top: 3px;
+}
+
+/* ==================================================
+   4. BỐ CỤC CHÍNH
+================================================== */
+
+.app-shell {
+    display: flex;
+    min-height: calc(100vh - 124px);
+}
+
+.main {
+    flex: 1;
+    min-width: 0;
+    padding: 28px;
+}
+
+/* ==================================================
+   5. SIDEBAR VÀ MENU ĐIỀU HƯỚNG
+================================================== */
+
+.sidebar {
+    width: 230px;
+    background: white;
+    border-right: 1px solid var(--line);
+    padding: 20px 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-label {
+    font-size: 10px;
+    color: #9aa5b5;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 10px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 14px;
+    border-radius: 10px;
+    margin: 3px 0;
+    color: #58677c;
+    font-weight: 500;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: #eaf3ff;
+    color: #1767b5;
+    font-weight: 700;
+}
+
+.ico {
+    font-size: 18px;
+    width: 20px;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    border-top: 1px solid var(--line);
+    padding-top: 12px;
+}
+
+.sidebar button {
+    width: 100%;
+    background: white;
+    border: 0;
+    cursor: pointer;
+    text-align: left;
+}
+
+/* ==================================================
+   6. TIÊU ĐỀ TRANG
+================================================== */
+
+.page-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: flex-start;
+    margin-bottom: 22px;
+}
+
+.page-heading h1 {
+    font-size: 24px;
+    margin: 0 0 7px;
+    color: #1e2f49;
+}
+
+.page-heading p {
+    margin: 0;
+    color: var(--muted);
+}
+
+/* ==================================================
+   7. NÚT BẤM
+================================================== */
+
+.btn {
+    border: 0;
+    border-radius: 9px;
+    padding: 10px 14px;
+    display: inline-flex;
+    gap: 7px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: var(--blue);
+    color: #fff;
+}
+
+.btn-light {
+    background: #fff;
+    border: 1px solid var(--line);
+    color: #53627a;
+}
+
+.btn-danger {
+    background: #fff0f0;
+    color: #bd3434;
+}
+
+.btn-sm {
+    padding: 7px 10px;
+    font-size: 12px;
+}
+
+/* ==================================================
+   8. PANEL VÀ THẺ THỐNG KÊ
+================================================== */
+
+.panel,
+.stat {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 9px 26px #1b2f4f0a;
+    padding: 18px;
+    margin-bottom: 18px;
+}
+
+.panel-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.panel-title h2 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.stat {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.stat-icon {
+    font-size: 22px;
+    border-radius: 12px;
+    padding: 13px;
+    background: #e7f1ff;
+}
+
+.stat small {
+    color: var(--muted);
+}
+
+.stat strong {
+    display: block;
+    font-size: 25px;
+    margin-top: 5px;
+}
+
+/* ==================================================
+   9. BỘ LỌC VÀ TRƯỜNG NHẬP LIỆU
+================================================== */
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-bottom: 15px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.field label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #59677c;
+}
+
+.input,
+.select,
+.textarea {
+    width: 100%;
+    padding: 10px 11px;
+    border: 1px solid #dce3ec;
+    border-radius: 9px;
+    background: white;
+    outline: none;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+    border-color: #5b9fe8;
+    box-shadow: 0 0 0 3px #2878d019;
+}
+
+.search {
+    flex: 1;
+    min-width: 210px;
+}
+
+.filters .field {
+    min-width: 140px;
+}
+
+/* ==================================================
+   10. BẢNG DỮ LIỆU
+================================================== */
+
+.table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    white-space: nowrap;
+}
+
+th {
+    background: #f7f9fc;
+    color: #718096;
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    padding: 13px;
+    border-bottom: 1px solid var(--line);
+}
+
+td {
+    padding: 13px;
+    border-bottom: 1px solid #edf0f5;
+    font-size: 12px;
+}
+
+tr:last-child td {
+    border-bottom: 0;
+}
+
+/* ==================================================
+   11. NHÃN TRẠNG THÁI
+================================================== */
+
+.badge {
+    display: inline-block;
+    padding: 6px 9px;
+    border-radius: 7px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.green {
+    background: #dcf7e8;
+    color: #17814a;
+}
+
+.amber {
+    background: #fff1c9;
+    color: #966300;
+}
+
+.red {
+    background: #ffe1e1;
+    color: #b92d3b;
+}
+
+.blue {
+    background: #e1efff;
+    color: #1e67b2;
+}
+
+.gray {
+    background: #edf0f5;
+    color: #68758a;
+}
+
+/* ==================================================
+   12. CÁC NÚT THAO TÁC TRONG BẢNG
+================================================== */
+
+.actions {
+    display: flex;
+    gap: 5px;
+}
+
+.icon-btn {
+    border: 1px solid var(--line);
+    background: white;
+    border-radius: 7px;
+    padding: 6px 8px;
+    cursor: pointer;
+}
+
+/* ==================================================
+   13. BỐ CỤC FORM VÀ DANH SÁCH
+================================================== */
+
+.split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 345px;
+    gap: 17px;
+    align-items: start;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
+}
+
+.span2 {
+    grid-column: 1 / -1;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 17px;
+    border-top: 1px solid var(--line);
+    padding-top: 15px;
+}
+
+/* ==================================================
+   14. THÔNG BÁO
+================================================== */
+
+.flash {
+    padding: 12px 14px;
+    border-radius: 9px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.success {
+    background: #e3f8eb;
+    color: #187747;
+}
+
+.error {
+    background: #fff0f0;
+    color: #b42e3c;
+}
+
+/* ==================================================
+   15. FOOTER
+================================================== */
+
+.footer {
+    background: #fff;
+    border-top: 1px solid var(--line);
+    padding: 16px 28px;
+    display: flex;
+    justify-content: space-between;
+    color: #8b97a8;
+    font-size: 11px;
+}
+
+/* ==================================================
+   16. GIAO DIỆN ĐĂNG NHẬP
+================================================== */
+
+.auth-page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.auth-visual {
+    background:
+        radial-gradient(circle at 20% 20%, #347dc8, transparent 42%),
+        linear-gradient(145deg, #142d52, #1b4779);
+    color: white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.auth-visual h1 {
+    font-size: 38px;
+    line-height: 1.3;
+}
+
+.auth-visual p {
+    line-height: 1.8;
+    color: #d1e1f5;
+    max-width: 420px;
+}
+
+.auth-art {
+    text-align: center;
+    font-size: 100px;
+    padding: 20px;
+}
+
+.auth-card-wrap {
+    display: grid;
+    place-items: center;
+    padding: 25px;
+    background: #f7f9fc;
+}
+
+.auth-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 38px;
+    width: min(440px, 100%);
+    box-shadow: 0 24px 70px #1a365315;
+}
+
+.auth-card h2 {
+    font-size: 26px;
+    margin: 0 0 8px;
+}
+
+.auth-card p {
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+.auth-card .field {
+    margin-bottom: 16px;
+}
+
+.auth-card .btn {
+    width: 100%;
+    padding: 13px;
+}
+
+.hint {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #8491a3;
+    margin-top: 18px;
+}
+
+/* ==================================================
+   17. RESPONSIVE: MÀN HÌNH VỪA
+================================================== */
+
+@media (max-width: 1100px) {
+    .split {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ==================================================
+   18. RESPONSIVE: ĐIỆN THOẠI
+================================================== */
+
+@media (max-width: 760px) {
+    .sidebar {
+        width: 60px;
+        padding: 12px 6px;
+    }
+
+    .nav-label,
+    .nav-text {
+        display: none;
+    }
+
+    .nav-link {
+        justify-content: center;
+        padding: 13px 5px;
+    }
+
+    .main {
+        padding: 17px 12px;
+    }
+
+    .topbar {
+        padding: 0 13px;
+    }
+
+    .top-user .uname {
+        display: none;
+    }
+
+    .page-heading {
+        flex-direction: column;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .span2 {
+        grid-column: auto;
+    }
+
+    .auth-page {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-visual {
+        display: none;
+    }
+
+    .panel {
+        padding: 12px;
+    }
+
+    .footer {
+        padding: 13px;
+        flex-direction: column;
+        gap: 6px;
+    }
+}
