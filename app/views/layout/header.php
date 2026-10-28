@@ -130,6 +130,14 @@ $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '';
         <span class="nav-text">Lập phiếu xuất kho</span>
     </a>
 <?php endif; ?>
+<?php if (($u['TenVaiTro'] ?? '') === 'Admin' || in_array('KIEMKE_LAP', $u['permissions'] ?? [], true)): ?>
+    <a class="nav-link <?= str_contains($path, 'inventory-counts') ? 'active' : '' ?>"
+       href="<?= BASE_URL ?>/inventory-counts">
+        <span class="ico">▤</span>
+        <span class="nav-text">Lập biên bản kiểm kê</span>
+    </a>
+<?php endif; ?>
+
 
         <!-- Đăng xuất -->
         <div class="sidebar-bottom">

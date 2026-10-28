@@ -140,6 +140,13 @@ $routes = [
     'GET /plans/edit'   => [PlanController::class, 'edit'],
     'GET /plans/detail' => [PlanController::class, 'detail'],
     'POST /plans/save'  => [PlanController::class, 'save'],
+     // UC22 - Lap bien ban kiem ke
+    'GET /inventory-counts' => [InventoryCountController::class, 'index'],
+    'GET /inventory-counts/create' => [InventoryCountController::class, 'create'],
+    'GET /inventory-counts/detail' => [InventoryCountController::class, 'detail'],
+    'POST /inventory-counts/save' => [InventoryCountController::class, 'save'],
+    'POST /inventory-counts/cancel' => [InventoryCountController::class, 'cancel'],
+
 ];
 
 
