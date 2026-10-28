@@ -115,7 +115,13 @@ $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '';
 
     
 
-        
+<!-- Kế hoạch nguyên liệu -->
+<?php if (($u['TenVaiTro'] ?? '') === 'Admin' || in_array('KEHOACH_XEM', $u['permissions'] ?? [], true)): ?>
+    <a class="nav-link <?= str_contains($path, 'plans') ? 'active' : '' ?>" href="<?= BASE_URL ?>/plans">
+        <span class="ico">▤</span>
+        <span class="nav-text">Kế hoạch nguyên liệu</span>
+    </a>
+<?php endif; ?>
 <!-- Lập phiếu xuất kho - Mỹ Oanh -->
 <?php if (in_array($u['MaVaiTro'] ?? '', ['ADMIN', 'NVKHO'], true)): ?>
     <a class="nav-link"
