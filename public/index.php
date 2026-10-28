@@ -134,6 +134,8 @@ $routes = [
         ExportController::class,
         'index'
     ],
+    'POST /exports/save'   => [ExportController::class, 'save'],
+    'GET /exports/detail' => [ExportController::class, 'detail'],
     // FR11 - Kế hoạch nguyên liệu - Gia Bao
     'GET /plans'        => [PlanController::class, 'index'],
     'GET /plans/create' => [PlanController::class, 'create'],

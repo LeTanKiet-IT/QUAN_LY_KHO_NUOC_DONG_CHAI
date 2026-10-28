@@ -122,9 +122,9 @@ $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '';
         <span class="nav-text">Kế hoạch nguyên liệu</span>
     </a>
 <?php endif; ?>
-<!-- Lập phiếu xuất kho - Mỹ Oanh -->
-<?php if (in_array($u['MaVaiTro'] ?? '', ['ADMIN', 'NVKHO'], true)): ?>
-    <a class="nav-link"
+<!-- Lập phiếu xuất kho - Mỹ Oanh (FR17) -->
+<?php if (($u['TenVaiTro'] ?? '') === 'Admin' || in_array('XUATKHO_QUANLY', $u['permissions'] ?? [], true)): ?>
+    <a class="nav-link <?= str_contains($path, 'exports') ? 'active' : '' ?>"
        href="<?= BASE_URL ?>/exports">
         <span class="ico">▤</span>
         <span class="nav-text">Lập phiếu xuất kho</span>
