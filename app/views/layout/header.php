@@ -113,6 +113,18 @@ $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '';
             <span class="nav-text">Nhập kho</span>
         </a>
 
+    
+
+        
+<!-- Lập phiếu xuất kho - Mỹ Oanh -->
+<?php if (in_array($u['MaVaiTro'] ?? '', ['ADMIN', 'NVKHO'], true)): ?>
+    <a class="nav-link"
+       href="<?= BASE_URL ?>/exports">
+        <span class="ico">▤</span>
+        <span class="nav-text">Lập phiếu xuất kho</span>
+    </a>
+<?php endif; ?>
+
         <!-- Đăng xuất -->
         <div class="sidebar-bottom">
 
