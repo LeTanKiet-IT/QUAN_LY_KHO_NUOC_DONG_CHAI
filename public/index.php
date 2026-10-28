@@ -129,7 +129,15 @@ $routes = [
     ],
     'GET /imports/detail' => [ImportController::class, 'detail'],
 
+    // FR17 - Lap phieu xuat kho - My Oanh
+    'GET /exports' => [
+        ExportController::class,
+        'index'
+    ],
+
 ];
+
+
 
 
 // ==================================================
