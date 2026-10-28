@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 27, 2026 lúc 07:13 PM
--- Phiên bản máy phục vụ: 10.11.16-MariaDB
--- Phiên bản PHP: 8.5.12
+-- Thời gian đã tạo: Th10 28, 2026 lúc 04:38 PM
+-- Phiên bản máy phục vụ: 10.4.32-MariaDB
+-- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,6 +50,28 @@ INSERT INTO `chi_tiet_chung_tu_nguon` (`MaChiTiet`, `MaChungTu`, `MaHang`, `SoLu
 (8, 'CTNL011', 'NL001', 100.00, 0.00),
 (9, 'CTTP006', 'TP001', 250.00, 0.00),
 (10, 'CTTP007', 'TP003', 100.00, 0.00);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chi_tiet_ke_hoach`
+--
+
+CREATE TABLE `chi_tiet_ke_hoach` (
+  `MaChiTiet` int(11) NOT NULL,
+  `MaKeHoach` varchar(30) NOT NULL,
+  `MaHang` varchar(30) NOT NULL,
+  `SoLuongCan` decimal(14,2) NOT NULL,
+  `GhiChu` varchar(300) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chi_tiet_ke_hoach`
+--
+
+INSERT INTO `chi_tiet_ke_hoach` (`MaChiTiet`, `MaKeHoach`, `MaHang`, `SoLuongCan`, `GhiChu`) VALUES
+(1, 'KH261028A001', 'NL001', 1000.00, NULL),
+(2, 'KH261028A002', 'NL001', 600.00, 'Đợt 2');
 
 -- --------------------------------------------------------
 
@@ -136,6 +158,30 @@ INSERT INTO `hang_hoa` (`MaHang`, `TenHang`, `LoaiHang`, `DonViTinh`, `TrangThai
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `ke_hoach_nguyen_lieu`
+--
+
+CREATE TABLE `ke_hoach_nguyen_lieu` (
+  `MaKeHoach` varchar(30) NOT NULL,
+  `NgayLap` datetime NOT NULL DEFAULT current_timestamp(),
+  `MaNguoiLap` varchar(20) NOT NULL,
+  `ThoiGianSuDung` date NOT NULL,
+  `TrangThai` enum('NHAP','CHO_PHE_DUYET','CHO_CHINH_SUA','DA_PHE_DUYET','TU_CHOI') NOT NULL DEFAULT 'NHAP',
+  `LyDo` varchar(500) DEFAULT NULL COMMENT 'Lý do từ chối / nội dung yêu cầu chỉnh sửa của Ban giám đốc',
+  `GhiChu` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `ke_hoach_nguyen_lieu`
+--
+
+INSERT INTO `ke_hoach_nguyen_lieu` (`MaKeHoach`, `NgayLap`, `MaNguoiLap`, `ThoiGianSuDung`, `TrangThai`, `LyDo`, `GhiChu`) VALUES
+('KH261028A001', '2026-10-28 20:38:28', 'TK_NVKHO01', '2026-11-11', 'CHO_CHINH_SUA', 'Giảm số lượng hạt nhựa PET xuống còn 800 kg.', 'Kế hoạch sản xuất tuần tới'),
+('KH261028A002', '2026-10-28 20:38:28', 'TK_NVKHO01', '2026-11-27', 'CHO_PHE_DUYET', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `kho`
 --
 
@@ -182,7 +228,8 @@ INSERT INTO `lich_su_thao_tac` (`MaLichSu`, `MaTaiKhoan`, `ThoiGian`, `HanhDong`
 (5, 'TK_NVKHO01', '2026-10-28 00:04:31', 'LAP_PHIEU_NHAP', 'phieu_nhap_kho', 'PN202610280004317DF479', 'Lập phiếu nhập từ chứng từ CTTP001'),
 (6, 'TK_NVKHO01', '2026-10-28 00:07:25', 'LAP_PHIEU_NHAP', 'phieu_nhap_kho', 'PN202610280007258B5A3B', 'Lập phiếu nhập từ chứng từ CTTP001'),
 (7, 'TK_NVKHO01', '2026-10-28 00:20:59', 'LAP_PHIEU_NHAP', 'phieu_nhap_kho', 'PN202610280020590BAA64', 'Lập phiếu nhập từ chứng từ CTNL008'),
-(8, 'TK_NVKHO01', '2026-10-28 00:48:52', 'LAP_PHIEU_NHAP', 'phieu_nhap_kho', 'PN20261028004852D432CB', 'Lập phiếu nhập từ chứng từ CTNL004');
+(8, 'TK_NVKHO01', '2026-10-28 00:48:52', 'LAP_PHIEU_NHAP', 'phieu_nhap_kho', 'PN20261028004852D432CB', 'Lập phiếu nhập từ chứng từ CTNL004'),
+(9, 'TK001', '2026-10-28 20:49:40', 'DANG_NHAP', 'tai_khoan', 'TK001', 'Đăng nhập thành công');
 
 -- --------------------------------------------------------
 
@@ -291,6 +338,8 @@ CREATE TABLE `quyen` (
 INSERT INTO `quyen` (`MaQuyen`, `TenQuyen`, `MoTa`) VALUES
 ('HANGLOI_QUANLY', 'Quản lý hàng lỗi', 'Tạo sửa xóa phiếu và xử lý'),
 ('HANGLOI_XEM', 'Xem hàng lỗi', 'Xem danh sách phiếu'),
+('KEHOACH_QUANLY', 'Quản lý kế hoạch nguyên liệu', 'Tạo và chỉnh sửa kế hoạch nguyên liệu'),
+('KEHOACH_XEM', 'Xem kế hoạch nguyên liệu', 'Xem danh sách và chi tiết kế hoạch nguyên liệu'),
 ('NHAPKHO_QUANLY', 'Quản lý nhập kho', 'Lập và quản lý phiếu nhập kho'),
 ('TAIKHOAN_QUANLY', 'Quản lý tài khoản', 'Thêm sửa khóa tài khoản và gán vai trò'),
 ('TAIKHOAN_XEM', 'Xem tài khoản', 'Xem danh sách tài khoản');
@@ -320,7 +369,7 @@ CREATE TABLE `tai_khoan` (
 
 INSERT INTO `tai_khoan` (`MaTaiKhoan`, `TenDangNhap`, `MatKhauHash`, `HoTen`, `Email`, `SoDienThoai`, `MaVaiTro`, `TrangThai`, `NgayTao`, `LanDangNhapCuoi`) VALUES
 ('TK_NVKHO01', 'nhanvienkho', '$2y$12$g8DhGy8/EoqrluNGr4T3h.09DRP1OMFWkHpSlnJ7crVRVrpxHSPrC', 'Nhân viên kho', 'nhanvienkho@example.com', NULL, 'NVKHO', 'ACTIVE', '2026-10-27 22:30:26', '2026-10-27 22:35:29'),
-('TK001', 'admin', '$2y$12$JD.BvTqEYHKMdoO24ZwsBuiaxVplvBJbhtLz/m4skitxasDt126gG', 'Quản trị hệ thống', 'admin@example.com', NULL, 'ADMIN', 'ACTIVE', '2026-10-27 22:01:04', NULL);
+('TK001', 'admin', '$2y$12$JD.BvTqEYHKMdoO24ZwsBuiaxVplvBJbhtLz/m4skitxasDt126gG', 'Quản trị hệ thống', 'admin@example.com', NULL, 'ADMIN', 'ACTIVE', '2026-10-27 22:01:04', '2026-10-28 20:49:40');
 
 -- --------------------------------------------------------
 
@@ -385,12 +434,16 @@ CREATE TABLE `vai_tro_quyen` (
 INSERT INTO `vai_tro_quyen` (`MaVaiTro`, `MaQuyen`) VALUES
 ('ADMIN', 'HANGLOI_QUANLY'),
 ('ADMIN', 'HANGLOI_XEM'),
+('ADMIN', 'KEHOACH_QUANLY'),
+('ADMIN', 'KEHOACH_XEM'),
 ('ADMIN', 'NHAPKHO_QUANLY'),
 ('ADMIN', 'TAIKHOAN_QUANLY'),
 ('ADMIN', 'TAIKHOAN_XEM'),
 ('KIEMDINH', 'HANGLOI_XEM'),
 ('NVKHO', 'HANGLOI_QUANLY'),
 ('NVKHO', 'HANGLOI_XEM'),
+('NVKHO', 'KEHOACH_QUANLY'),
+('NVKHO', 'KEHOACH_XEM'),
 ('NVKHO', 'NHAPKHO_QUANLY');
 
 --
@@ -403,6 +456,14 @@ INSERT INTO `vai_tro_quyen` (`MaVaiTro`, `MaQuyen`) VALUES
 ALTER TABLE `chi_tiet_chung_tu_nguon`
   ADD PRIMARY KEY (`MaChiTiet`),
   ADD KEY `MaChungTu` (`MaChungTu`),
+  ADD KEY `MaHang` (`MaHang`);
+
+--
+-- Chỉ mục cho bảng `chi_tiet_ke_hoach`
+--
+ALTER TABLE `chi_tiet_ke_hoach`
+  ADD PRIMARY KEY (`MaChiTiet`),
+  ADD UNIQUE KEY `uq_kehoach_hang` (`MaKeHoach`,`MaHang`),
   ADD KEY `MaHang` (`MaHang`);
 
 --
@@ -425,6 +486,14 @@ ALTER TABLE `chung_tu_nguon`
 --
 ALTER TABLE `hang_hoa`
   ADD PRIMARY KEY (`MaHang`);
+
+--
+-- Chỉ mục cho bảng `ke_hoach_nguyen_lieu`
+--
+ALTER TABLE `ke_hoach_nguyen_lieu`
+  ADD PRIMARY KEY (`MaKeHoach`),
+  ADD KEY `MaNguoiLap` (`MaNguoiLap`),
+  ADD KEY `TrangThai` (`TrangThai`);
 
 --
 -- Chỉ mục cho bảng `kho`
@@ -510,6 +579,12 @@ ALTER TABLE `chi_tiet_chung_tu_nguon`
   MODIFY `MaChiTiet` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT cho bảng `chi_tiet_ke_hoach`
+--
+ALTER TABLE `chi_tiet_ke_hoach`
+  MODIFY `MaChiTiet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT cho bảng `chi_tiet_phieu_nhap`
 --
 ALTER TABLE `chi_tiet_phieu_nhap`
@@ -519,21 +594,27 @@ ALTER TABLE `chi_tiet_phieu_nhap`
 -- AUTO_INCREMENT cho bảng `lich_su_thao_tac`
 --
 ALTER TABLE `lich_su_thao_tac`
-  MODIFY `MaLichSu` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `MaLichSu` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- Ràng buộc đối với các bảng kết xuất
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Ràng buộc cho bảng `chi_tiet_chung_tu_nguon`
+-- Các ràng buộc cho bảng `chi_tiet_chung_tu_nguon`
 --
 ALTER TABLE `chi_tiet_chung_tu_nguon`
   ADD CONSTRAINT `chi_tiet_chung_tu_nguon_ibfk_1` FOREIGN KEY (`MaChungTu`) REFERENCES `chung_tu_nguon` (`MaChungTu`),
   ADD CONSTRAINT `chi_tiet_chung_tu_nguon_ibfk_2` FOREIGN KEY (`MaHang`) REFERENCES `hang_hoa` (`MaHang`);
 
 --
--- Ràng buộc cho bảng `chi_tiet_phieu_nhap`
+-- Các ràng buộc cho bảng `chi_tiet_ke_hoach`
+--
+ALTER TABLE `chi_tiet_ke_hoach`
+  ADD CONSTRAINT `fk_ctkh_kehoach` FOREIGN KEY (`MaKeHoach`) REFERENCES `ke_hoach_nguyen_lieu` (`MaKeHoach`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `chi_tiet_phieu_nhap`
 --
 ALTER TABLE `chi_tiet_phieu_nhap`
   ADD CONSTRAINT `chi_tiet_phieu_nhap_ibfk_1` FOREIGN KEY (`MaPhieuNhap`) REFERENCES `phieu_nhap_kho` (`MaPhieuNhap`),
@@ -541,26 +622,26 @@ ALTER TABLE `chi_tiet_phieu_nhap`
   ADD CONSTRAINT `chi_tiet_phieu_nhap_ibfk_3` FOREIGN KEY (`MaChiTietNguon`) REFERENCES `chi_tiet_chung_tu_nguon` (`MaChiTiet`);
 
 --
--- Ràng buộc cho bảng `lich_su_thao_tac`
+-- Các ràng buộc cho bảng `lich_su_thao_tac`
 --
 ALTER TABLE `lich_su_thao_tac`
   ADD CONSTRAINT `lich_su_thao_tac_ibfk_1` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `tai_khoan` (`MaTaiKhoan`) ON DELETE SET NULL;
 
 --
--- Ràng buộc cho bảng `lo_hang`
+-- Các ràng buộc cho bảng `lo_hang`
 --
 ALTER TABLE `lo_hang`
   ADD CONSTRAINT `lo_hang_ibfk_1` FOREIGN KEY (`MaHang`) REFERENCES `hang_hoa` (`MaHang`),
   ADD CONSTRAINT `lo_hang_ibfk_2` FOREIGN KEY (`MaPhieuNhap`) REFERENCES `phieu_nhap_kho` (`MaPhieuNhap`);
 
 --
--- Ràng buộc cho bảng `phieu_hang_loi`
+-- Các ràng buộc cho bảng `phieu_hang_loi`
 --
 ALTER TABLE `phieu_hang_loi`
   ADD CONSTRAINT `phieu_hang_loi_ibfk_1` FOREIGN KEY (`MaNguoiLap`) REFERENCES `tai_khoan` (`MaTaiKhoan`);
 
 --
--- Ràng buộc cho bảng `phieu_nhap_kho`
+-- Các ràng buộc cho bảng `phieu_nhap_kho`
 --
 ALTER TABLE `phieu_nhap_kho`
   ADD CONSTRAINT `phieu_nhap_kho_ibfk_1` FOREIGN KEY (`MaChungTu`) REFERENCES `chung_tu_nguon` (`MaChungTu`),
@@ -568,20 +649,20 @@ ALTER TABLE `phieu_nhap_kho`
   ADD CONSTRAINT `phieu_nhap_kho_ibfk_3` FOREIGN KEY (`MaNguoiLap`) REFERENCES `tai_khoan` (`MaTaiKhoan`);
 
 --
--- Ràng buộc cho bảng `tai_khoan`
+-- Các ràng buộc cho bảng `tai_khoan`
 --
 ALTER TABLE `tai_khoan`
   ADD CONSTRAINT `tai_khoan_ibfk_1` FOREIGN KEY (`MaVaiTro`) REFERENCES `vai_tro` (`MaVaiTro`);
 
 --
--- Ràng buộc cho bảng `ton_kho`
+-- Các ràng buộc cho bảng `ton_kho`
 --
 ALTER TABLE `ton_kho`
   ADD CONSTRAINT `ton_kho_ibfk_1` FOREIGN KEY (`MaKho`) REFERENCES `kho` (`MaKho`),
   ADD CONSTRAINT `ton_kho_ibfk_2` FOREIGN KEY (`MaHang`) REFERENCES `hang_hoa` (`MaHang`);
 
 --
--- Ràng buộc cho bảng `vai_tro_quyen`
+-- Các ràng buộc cho bảng `vai_tro_quyen`
 --
 ALTER TABLE `vai_tro_quyen`
   ADD CONSTRAINT `vai_tro_quyen_ibfk_1` FOREIGN KEY (`MaVaiTro`) REFERENCES `vai_tro` (`MaVaiTro`),
